@@ -8,20 +8,20 @@ import java.util.*;
 public class ConsumerWithManualCommit {
     public static void main(String[] args) throws IOException {
         Properties props = new Properties();
-        props.put("bootstrap.servers", "localhost:9092, localhost:9093, localhost:9094");
+        props.put("bootstrap.servers", "localhost:9092");
         props.put("group.id", "second-group");
         props.put("key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
         props.put("value.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
 
-        String topics[] = {"numbers"};
+        String topics[] = {"animals"};
 
         KafkaConsumer<String, String> consumer = new KafkaConsumer<String, String>(props);
         consumer.subscribe(Arrays.asList(topics));
 
-        final int minBatchSize = 200;
+        final int minBatchSize = 20;
         List<ConsumerRecord<String, String>> buffer = new ArrayList<>();
         // Change path here to match path on your computer
-        FileWriter fileWriter = new FileWriter("/Users/bogdan/Desktop/numbers.txt",true);
+        FileWriter fileWriter = new FileWriter("/Users/lalyos/Desktop/numbers.txt",true);
 
         try {
             while (true) {

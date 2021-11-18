@@ -19,26 +19,26 @@ public class Producer {
         int numOfRecords = 100;
         String topic = "animals";
 
-        // EXAMPLE 1 - Numbers as strings for key and value without any delay
-        for (int i = 0; i < numOfRecords; i++) {
-            System.out.println("Message " + i + " was just sent");
-            producer.send(new ProducerRecord<>(topic, Integer.toString(i), Integer.toString(i)));
-        }
-        producer.close();
+        // // EXAMPLE 1 - Numbers as strings for key and value without any delay
+        // for (int i = 0; i < numOfRecords; i++) {
+        //     System.out.println("Message " + i + " was just sent");
+        //     producer.send(new ProducerRecord<>(topic, Integer.toString(i), Integer.toString(i)));
+        // }
+        // producer.close();
 
-//        // EXAMPLE 2 - Formatted string as message and messages are sent with 300ms delay (3 messages / second)
-//        try {
-//            for (int i = 0; i < numOfRecords; i++) {
-//                String message = String.format("Producer %s has sent message %s at %s", clientId, i, new Date());
-//                System.out.println(message);
-//                producer.send(new ProducerRecord<>(topic, Integer.toString(i), message));
-//                Thread.sleep(300);
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        } finally {
-//            producer.close();
-//        }
+       // EXAMPLE 2 - Formatted string as message and messages are sent with 300ms delay (3 messages / second)
+       try {
+           for (int i = 0; i < numOfRecords; i++) {
+               String message = String.format("Producer %s has sent message %s at %s", clientId, i, new Date());
+               System.out.println(message);
+               producer.send(new ProducerRecord<>(topic, Integer.toString(i), message));
+               Thread.sleep(300);
+           }
+       } catch (Exception e) {
+           e.printStackTrace();
+       } finally {
+           producer.close();
+       }
 
     }
 }
