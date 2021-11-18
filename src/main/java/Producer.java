@@ -8,7 +8,7 @@ public class Producer {
         String clientId = "my-producer";
 
         Properties props = new Properties();
-        props.put("bootstrap.servers", "localhost:9092, localhost:9093, localhost:9094");
+        props.put("bootstrap.servers", "localhost:9092");
         props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
         props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
         props.put("acks", "all");
@@ -17,7 +17,7 @@ public class Producer {
         KafkaProducer<String, String> producer = new KafkaProducer<String, String>(props);
 
         int numOfRecords = 100;
-        String topic = "numbers";
+        String topic = "animals";
 
         // EXAMPLE 1 - Numbers as strings for key and value without any delay
         for (int i = 0; i < numOfRecords; i++) {
